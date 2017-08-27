@@ -1,0 +1,6 @@
+source https://www.nuget.org/api/v2
+nuget FAKE
+nuget FSharp.Core
+nuget Zafir.FSharp
+nuget Zafir.Suave
+nuget Zafir.UI.Next
