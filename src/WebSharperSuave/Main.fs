@@ -1,4 +1,4 @@
-namespace WSSuave
+namespace WebSharperSuave
 
 open WebSharper
 open WebSharper.Sitelets
@@ -15,7 +15,7 @@ module Templating =
     type MainTemplate = Templating.Template<"Main.html">
 
     // Compute a menubar where the menu item for the given endpoint is active
-    let MenuBar (ctx: Context<EndPoint>) endpoint : Doc list =
+    let menuBar (ctx: Context<EndPoint>) endpoint : Doc list =
         let ( => ) txt act =
              liAttr [if endpoint = act then yield attr.``class`` "active"] [
                 aAttr [attr.href (ctx.Link act)] [text txt]
@@ -29,7 +29,7 @@ module Templating =
         Content.Page(
             MainTemplate()
                 .Title(title)
-                .MenuBar(MenuBar ctx action)
+                .MenuBar(menuBar ctx action)
                 .Body(body)
                 .Doc()
         )
@@ -37,23 +37,23 @@ module Templating =
 module Site =
     open WebSharper.UI.Next.Html
 
-    let HomePage ctx =
+    let homePage ctx =
         Templating.Main ctx EndPoint.Home "Home" [
             h1 [text "Say Hi to the server!"]
             div [client <@ Client.Main() @>]
         ]
 
-    let AboutPage ctx =
+    let aboutPage ctx =
         Templating.Main ctx EndPoint.About "About" [
             h1 [text "About"]
             p [text "This is a template WebSharper client-server application."]
         ]
 
-    let Main =
+    let main =
         Application.MultiPage (fun ctx endpoint ->
             match endpoint with
-            | EndPoint.Home -> HomePage ctx
-            | EndPoint.About -> AboutPage ctx
+            | EndPoint.Home -> homePage ctx
+            | EndPoint.About -> aboutPage ctx
         )
 
     open WebSharper.Suave
@@ -67,7 +67,7 @@ module Site =
     let builder = UriBuilder(codeBase)
     let pathToAssembly = Uri.UnescapeDataString(builder.Path)
     let rootPath = Path.GetDirectoryName(Path.Combine(pathToAssembly, "../../"))
-    (*let debugConfig = { defaultConfig with logger = Loggers.saneDefaultsFor LogLevel.Verbose }*)
+    // let debugConfig = { defaultConfig with logger = Loggers.saneDefaultsFor LogLevel.Verbose }
 
-    do startWebServer defaultConfig (WebSharperAdapter.ToWebPart (Main, RootDirectory=rootPath))
+    do startWebServer defaultConfig (WebSharperAdapter.ToWebPart (main, RootDirectory=rootPath))
 

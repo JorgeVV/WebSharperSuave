@@ -34,7 +34,7 @@ let Version = "0.1"  // or retrieve from CI server
 
 // App name
 [<Literal>]
-let AppName = "SZafir"
+let AppName = "WebSharperSuave"
 
 let kill _ =
     Async.CancelDefaultToken ()

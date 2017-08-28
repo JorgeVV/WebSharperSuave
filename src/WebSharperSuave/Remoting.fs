@@ -1,4 +1,4 @@
-namespace WSSuave
+namespace WebSharperSuave
 
 open WebSharper
 

@@ -8,35 +8,33 @@
     <ProjectGuid>c3a6e21f-60d9-41aa-8612-61ddb6ec3b8a</ProjectGuid>
     <WebSharperProject>Site</WebSharperProject>
     <OutputType>Exe</OutputType>
-    <RootNamespace>SZafir</RootNamespace>
-    <AssemblyName>SZafir</AssemblyName>
+    <RootNamespace>WebSharperSuave</RootNamespace>
+    <AssemblyName>WebSharperSuave</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFSharpCoreVersion>4.4.1.0</TargetFSharpCoreVersion>
-    <Name>SZafir</Name>
+    <Name>WebSharperSuave</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <Tailcalls>false</Tailcalls>
-    <!-- <OutputPath>bin</OutputPath> -->
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
     <PlatformTarget>$(Platform)</PlatformTarget>
-    <!-- <DocumentationFile>bin\$(Configuration)\$(AssemblyName).XML</DocumentationFile> -->
+    <DocumentationFile>bin\$(Configuration)\$(AssemblyName).XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <Tailcalls>true</Tailcalls>
-    <!-- <OutputPath>bin</OutputPath> -->
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
     <PlatformTarget>$(Platform)</PlatformTarget>
-    <!-- <DocumentationFile>bin\$(Configuration)\$(AssemblyName).XML</DocumentationFile> -->
+    <DocumentationFile>bin\$(Configuration)\$(AssemblyName).XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Remoting.fs" />
