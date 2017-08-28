@@ -393,3 +393,6 @@ paket-files/
 
 # VSCODE extension Local History
 .history/
+
+# WebSharper generated scripts
+Scripts/
