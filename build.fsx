@@ -62,7 +62,7 @@ let run _ =
     async {
         return! asyncShellExec {
             Program = binPath @@ appExe
-            WorkingDirectory = binPath
+            WorkingDirectory = __SOURCE_DIRECTORY__
             CommandLine = System.String.Empty
             Args = []
         }

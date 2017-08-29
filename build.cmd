@@ -3,7 +3,8 @@ cls
 
 .paket\paket.exe restore
 if errorlevel 1 (
-  exit /b %errorlevel%
+  .paket\paket.bootstrapper.exe
+  .paket\paket.exe restore
 )
 
 packages\FAKE\tools\FAKE.exe build.fsx %*
