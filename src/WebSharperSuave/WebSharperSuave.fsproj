@@ -38,8 +38,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Remoting.fs" />
+    <Compile Include="Resources.fs" />
     <Compile Include="Client.fs" />
     <Compile Include="Main.fs" />
+    <Content Include="Navbar.html" />
     <Content Include="Main.html" />
     <None Include="Web.config" />
   </ItemGroup>

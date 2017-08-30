@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>${Title}</title>
     <meta ws-replace="meta" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link ws-replace="styles" />
     <style>
         /* Sticky footer styles */
         html {
@@ -30,27 +30,8 @@
     </style>
 </head>
 <body>
-    <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" ws-toggle="collapse" ws-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Your App</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav" ws-hole="MenuBar"></ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="http://websharper.com">websharper.com</a></li>
-                </ul>
-            </div><!--/.nav-collapse -->
-        </div>
-    </nav>
-    <div class="container" ws-hole="Body">
-    </div>
+    <div ws-hole="Navbar"></div>
+    <div class="container" ws-hole="Body"></div>
     <footer class="footer">
         <div class="container">
             <p class="text-muted">

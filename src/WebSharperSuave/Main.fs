@@ -11,26 +11,32 @@ type EndPoint =
 
 module Templating =
     open WebSharper.UI.Next.Html
+    open WebSharper.UI.Next.Templating
 
-    type MainTemplate = Templating.Template<"Main.html">
-
+    type Templates = Template<"Main.html, Navbar.html", serverLoad=ServerLoad.WhenChanged>
+    
     // Compute a menubar where the menu item for the given endpoint is active
-    let menuBar (ctx: Context<EndPoint>) endpoint : Doc list =
-        let ( => ) txt act =
-             liAttr [if endpoint = act then yield attr.``class`` "active"] [
-                aAttr [attr.href (ctx.Link act)] [text txt]
-             ]
+    let navBar (ctx: Context<EndPoint>) endpoint : Doc list =
+        let ( => ) (txt : string) act =
+            let liClass = if endpoint = act then "active" else System.String.Empty
+            Templates.Navbar.navItem()
+                .liClasses(liClass)
+                .aHref(ctx.Link act)
+                .Text(txt)
+                .Doc()
+                                 
         [
-            li ["Home" => EndPoint.Home]
-            li ["About" => EndPoint.About]
+            "Home" => EndPoint.Home
+            "About" => EndPoint.About
         ]
 
     let Main ctx action (title : string) (body : Doc list) =
+        let resources = [Doc.WebControl(new Web.Require<Resources.Bootstrap>())]
         Content.Page(
-            MainTemplate()
+            Templates.Main()
                 .Title(title)
-                .MenuBar(menuBar ctx action)
-                .Body(body)
+                //.MenuBar(menuBar ctx action)
+                .Body(resources @ body)
                 .Doc()
         )
 
