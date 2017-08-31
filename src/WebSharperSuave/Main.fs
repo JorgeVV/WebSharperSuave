@@ -16,26 +16,29 @@ module Templating =
     type Templates = Template<"Main.html, Navbar.html", serverLoad=ServerLoad.WhenChanged>
     
     // Compute a menubar where the menu item for the given endpoint is active
-    let navBar (ctx: Context<EndPoint>) endpoint : Doc list =
+    let navbar (ctx : Context<EndPoint>) endpoint=
         let ( => ) (txt : string) act =
             let liClass = if endpoint = act then "active" else System.String.Empty
-            Templates.Navbar.navItem()
+            Templates.Navbar.NavbarItem()
                 .liClasses(liClass)
                 .aHref(ctx.Link act)
                 .Text(txt)
                 .Doc()
-                                 
-        [
-            "Home" => EndPoint.Home
-            "About" => EndPoint.About
-        ]
+
+        Templates.Navbar()
+            .NavbarList(
+            [
+                "Home" => EndPoint.Home
+                "About" => EndPoint.About
+            ])
+            .Doc()
 
     let Main ctx action (title : string) (body : Doc list) =
         let resources = [Doc.WebControl(new Web.Require<Resources.Bootstrap>())]
         Content.Page(
             Templates.Main()
                 .Title(title)
-                //.MenuBar(menuBar ctx action)
+                .Navbar(navbar ctx action)
                 .Body(resources @ body)
                 .Doc()
         )
@@ -46,7 +49,7 @@ module Site =
     let homePage ctx =
         Templating.Main ctx EndPoint.Home "Home" [
             h1 [text "Say Hi to the server!"]
-            div [client <@ Client.Main() @>]
+            client <@ Client.Main() @>
         ]
 
     let aboutPage ctx =

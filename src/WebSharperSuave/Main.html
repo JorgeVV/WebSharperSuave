@@ -6,7 +6,7 @@
     <title>${Title}</title>
     <meta ws-replace="meta" />
     <link ws-replace="styles" />
-    <style>
+    <!-- <style>
         /* Sticky footer styles */
         html {
             position: relative;
@@ -27,11 +27,13 @@
         .container .text-muted {
             margin: 20px 0;
         }
-    </style>
+    </style> -->
 </head>
 <body>
-    <div ws-hole="Navbar"></div>
+    <div ws-replace="Navbar"></div>
+
     <div class="container" ws-hole="Body"></div>
+
     <footer class="footer">
         <div class="container">
             <p class="text-muted">
@@ -40,6 +42,7 @@
             </p>
         </div>
     </footer>
+
     <script ws-replace="scripts"></script>
 </body>
 </html>
