@@ -13,7 +13,9 @@ module Templating =
     open WebSharper.UI.Next.Html
     open WebSharper.UI.Next.Templating
 
-    type Templates = Template<"Main.html, Navbar.html", serverLoad=ServerLoad.WhenChanged>
+    type Templates = Template<
+                        "assets/views/Main.html,assets/views/Navbar.html",
+                        serverLoad=ServerLoad.WhenChanged>
     
     // Compute a menubar where the menu item for the given endpoint is active
     let navbar (ctx : Context<EndPoint>) endpoint=
@@ -34,7 +36,10 @@ module Templating =
             .Doc()
 
     let Main ctx action (title : string) (body : Doc list) =
-        let resources = [Doc.WebControl(new Web.Require<Resources.Bootstrap>())]
+        let resources = [
+            // Doc.WebControl(new Web.Require<Resources.MainStyle>())
+            Doc.WebControl(new Web.Require<Resources.Bootstrap>())
+        ]
         Content.Page(
             Templates.Main()
                 .Title(title)
@@ -79,4 +84,3 @@ module Site =
     // let debugConfig = { defaultConfig with logger = Loggers.saneDefaultsFor LogLevel.Verbose }
 
     do startWebServer defaultConfig (WebSharperAdapter.ToWebPart (main, RootDirectory=rootPath))
-

@@ -4,6 +4,9 @@ module Resources =
     open WebSharper
     open WebSharper.Core.Resources
 
+    type MainStyle() =
+        inherit BaseResource("/assets/css/main.css")
+
     [<Require(typeof<JQuery.Resources.JQuery>)>]
     type Bootstrap() =
         inherit BaseResource (
