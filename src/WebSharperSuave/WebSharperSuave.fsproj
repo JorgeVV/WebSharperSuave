@@ -7,6 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c3a6e21f-60d9-41aa-8612-61ddb6ec3b8a</ProjectGuid>
     <WebSharperProject>Site</WebSharperProject>
+    <WebSharperSourceMap>True</WebSharperSourceMap>
     <OutputType>Exe</OutputType>
     <RootNamespace>WebSharperSuave</RootNamespace>
     <AssemblyName>WebSharperSuave</AssemblyName>
@@ -41,9 +42,8 @@
     <Compile Include="Resources.fs" />
     <Compile Include="Client.fs" />
     <Compile Include="Main.fs" />
-    <Content Include="assets/**/*.*" />
-    <!-- <Content Include="Navbar.html" /> -->
-    <!-- <Content Include="Main.html" /> -->
+    <Content Include="public/**/*.*" />
+    <Content Include="views/*.*" />
     <None Include="Web.config" />
   </ItemGroup>
   <Target Name="IncludeContent" BeforeTargets="Compile">

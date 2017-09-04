@@ -1,3 +1,4 @@
+#!/usr/bin/env fsharpi
 // include Fake libs
 #r "./packages/FAKE/tools/FakeLib.dll"
 open Fake
@@ -25,8 +26,7 @@ let DeployDir = "./deploy/"
 
 // Filesets
 let appReferences  =
-    !! "/**/*.csproj"
-    ++ "/**/*.fsproj"
+    !! "/**/*.fsproj"
 
 // Version info
 [<Literal>]
@@ -94,7 +94,7 @@ Target "Watch" (fun _ ->
             |> Seq.iter (fun change ->
                 match change.Status with
                 | Created -> Printf.kprintf Logg.ok "-> Created: %s." change.FullPath
-                | Changed -> Printf.kprintf Logg.info "-> Edited: %s." change.FullPath
+                | Changed -> Printf.kprintf Logg.debug "-> Edited: %s." change.FullPath
                 | Deleted -> Printf.kprintf Logg.error "-> Deleted: %s." change.FullPath
             )
             Logg.info "Building..."
