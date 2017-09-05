@@ -9,6 +9,7 @@ type EndPoint =
     | [<EndPoint "/about">] About
 
 module Templating =
+    open WebSharper
     open WebSharper.UI.Next.Html
     open WebSharper.UI.Next.Templating
 
@@ -38,12 +39,17 @@ module Templating =
             .Doc()
 
     let Main ctx action (title : string) (body : Doc list) =
+        let resources = [
+            Doc.WebControl(new Web.Require<Resources.MainStyle>())
+            Doc.WebControl(new Web.Require<Resources.Bootstrap>())
+        ]
+
         Content.Page(
             Templates
                 .Main()
                 .Title(title)
                 .Navbar(navbar ctx action)
-                .Body(body)
+                .Body(resources @ body)
                 .Doc()
         )
 

@@ -19,7 +19,3 @@ module Resources =
                 "css/bootstrap.min.css",
                 "js/bootstrap.min.js"
             )
-
-    [<assembly: Require(typeof<Bootstrap>)>]
-    [<assembly: Require(typeof<MainStyle>)>]
-    do ()
